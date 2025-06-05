@@ -1,6 +1,8 @@
 package util;
 
 
+import dao.*;
+
 import java.sql.Connection;
 
 /*Classe criada apenas para testar a requisição de conexão ao banco
@@ -14,6 +16,38 @@ public class TesteConexaoDB {
         if (condb != null) {
             System.out.println("Conexão sucedida!");
             try{
+
+                UsuariosDAO usuariosDAO = new UsuariosDAO();
+                usuariosDAO.inserirUsuario();
+                System.out.println("Usuario inserido com sucesso!");
+
+                ClientesDAO clientesDAO = new ClientesDAO();
+                clientesDAO.inserirCliente();
+                System.out.println("Cliente inserido com sucesso!");
+
+                //Já foi
+                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+                adicionaisDAO.inserirAdicional();
+                System.out.println("Adicional inserido com sucesso!");
+
+                PedidosDAO pedidosDAO = new PedidosDAO();
+                pedidosDAO.inserirPedido();
+                System.out.println("Pedido Inserido com sucesso!");
+
+                QuartosDAO quartosDAO = new QuartosDAO();
+                quartosDAO.inserirQuarto();
+                System.out.println("Quarto inserido com sucesso!");
+
+                //Já foi
+                ReservasDAO reservasDAO = new ReservasDAO();
+                reservasDAO.inserirReserva();
+                System.out.println("Reserva Inserido com sucesso!");
+
+                //Já foi
+                CargosDAO cargosDAO = new CargosDAO();
+                cargosDAO.inserirCargo();
+                System.out.println("Cargo Inserido com sucesso!");
+
                 condb.close();
                 System.out.println("Conexão encerrada!");
             } catch (Exception erro) {
