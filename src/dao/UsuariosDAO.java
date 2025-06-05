@@ -13,7 +13,7 @@ public class UsuariosDAO {
     public boolean inserirUsuario() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement novoUsuario = conndb.prepareStatement("INSERT INTO Usuario " + " (nome, fk_cargo_id,senha) VALUES (?, ?, md5 (?) );");
+            PreparedStatement novoUsuario = conndb.prepareStatement("INSERT INTO usuarios " + " (nome, fk_cargo_id,senha) VALUES (?, ?, md5 (?) );");
 
             //setar parametros
             novoUsuario.setString(1,"Gabriel");

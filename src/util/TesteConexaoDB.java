@@ -21,7 +21,7 @@ public class TesteConexaoDB {
                 usuariosDAO.inserirUsuario();
                 System.out.println("Usuario inserido com sucesso!");
 
-                ClientesDAO clientesDAO = new ClientesDAO();
+                /*ClientesDAO clientesDAO = new ClientesDAO();
                 clientesDAO.inserirCliente();
                 System.out.println("Cliente inserido com sucesso!");
 
@@ -46,7 +46,7 @@ public class TesteConexaoDB {
                 //Já foi
                 CargosDAO cargosDAO = new CargosDAO();
                 cargosDAO.inserirCargo();
-                System.out.println("Cargo Inserido com sucesso!");
+                System.out.println("Cargo Inserido com sucesso!");*/
 
                 condb.close();
                 System.out.println("Conexão encerrada!");
