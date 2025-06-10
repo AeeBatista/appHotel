@@ -13,14 +13,15 @@ public class PedidosDAO {
     public boolean inserirPedido() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement novoPedido = conndb.prepareStatement("INSERT INTO Pedidos " + "(fk_usuario_id,fk_cliente_id,data,pagamento) VALUES (?, ?, ?, ?);");
+            PreparedStatement novoPedido = conndb.prepareStatement("INSERT INTO Pedidos " + "(fk_usuario_id,fk_cliente_id,pagamento) VALUES (?, ?, ?);");
 
             //setar parametros
             novoPedido.setInt(1, 1);
             novoPedido.setInt(2,1 );
-            novoPedido.setString(4, "R$100,00");
+            novoPedido.setString(3,"Débito/Crédito");
 
             int LinhaAfetada = novoPedido.executeUpdate();
+            conndb.close();
             return LinhaAfetada > 0;
         } catch (Exception erro) {
             System.out.println("Erro ao inserir cliente: " + erro);

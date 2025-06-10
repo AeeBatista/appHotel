@@ -27,4 +27,34 @@ public class ClientesDAO {
             return false;
         }
     }
+
+    public boolean alterarClientes() {
+        PreparedStatement Cliente = null;
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement clienteAlterado = conndb.prepareStatement("UPDATE usuarios" + "SET nome = ?, cpf = ?, telefone = ?  WHERE id = ?");
+            clienteAlterado.setString(1, "Gabrielzinhuu");
+            clienteAlterado.setString(2, "###.###.###-#");
+            clienteAlterado.setString(3, "## #####-####");
+
+            int linhaAfetada = clienteAlterado.executeUpdate();
+            return linhaAfetada > 0;
+        } catch (Exception erro) {
+            System.out.println("Erro ao alterar cliente: " + erro);
+            return false;
+        }
+    }
+
+    public boolean deletarCliente() {
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement removeCliente = conndb.prepareStatement("DELETE FROM Clientes WHERE id = ?");
+            removeCliente.setInt(1, 1);
+            int linhaAfetada = removeCliente.executeUpdate();
+            return linhaAfetada > 0;
+        } catch (Exception erro) {
+            System.out.println("Erro ao deletar Cliente: " + erro);
+            return false;
+        }
+    }
 }
