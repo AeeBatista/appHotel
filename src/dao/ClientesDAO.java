@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ClientesDAO {
 
@@ -55,6 +56,29 @@ public class ClientesDAO {
         } catch (Exception erro) {
             System.out.println("Erro ao deletar Cliente: " + erro);
             return false;
+        }
+    }
+
+    //Query SELECT
+    public void pesquisarCliente() {
+
+
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement buscarCliente = conndb.prepareStatement("SELECT nome, cpf, telefone " + " FROM clientes WHERE id = ?");
+            buscarCliente.setInt(1, 1);
+            ResultSet resultado = buscarCliente.executeQuery();
+
+            while (resultado.next()) {
+                String nome = resultado.getString("nome");
+                String cpf = resultado.getString("cpf");
+                String telefone = resultado.getString("telefone");
+                System.out.println("Nome: " + nome + "CPF: " + cpf + "Telefone: " + telefone);
+
+            }
+            conndb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar cliente: " + erro);
         }
     }
 }

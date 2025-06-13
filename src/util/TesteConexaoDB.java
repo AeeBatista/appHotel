@@ -110,6 +110,10 @@ public class TesteConexaoDB {
                 cargosDAO.pesquisarCargo();
                 System.out.println("Cargos pesquisados com sucesso!");
 
+                ClientesDAO clientesDAO = new ClientesDAO();
+                clientesDAO.pesquisarCliente();
+                System.out.println("Clientes pesquisados com sucesso!");
+
 
 
 
