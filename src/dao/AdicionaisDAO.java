@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class AdicionaisDAO {
 
@@ -17,7 +18,7 @@ public class AdicionaisDAO {
 
             //setar parametros
             novoAdicional.setString(1, "Gabriel");
-            novoAdicional.setDouble(2,10.2);
+            novoAdicional.setDouble(2, 10.2);
 
             int LinhaAfetada = novoAdicional.executeUpdate();
             conndb.close();
@@ -27,6 +28,7 @@ public class AdicionaisDAO {
             return false;
         }
     }
+
     public boolean alterarAdicional() {
         PreparedStatement Adicional = null;
         try {
@@ -53,6 +55,28 @@ public class AdicionaisDAO {
         } catch (Exception erro) {
             System.out.println("Erro ao deletar Adicionais: " + erro);
             return false;
-            }
         }
+    }
+
+    //Query SELECT
+    public void pesquisarAdicional() {
+
+
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement buscarAdicional = conndb.prepareStatement("SELECT nome, preco " + " FROM adicionais WHERE id = ?");
+            buscarAdicional.setInt(1, 1);
+            ResultSet resultado = buscarAdicional.executeQuery();
+
+            while (resultado.next()) {
+                String nome = resultado.getString("nome");
+                String preco = resultado.getString("preço");
+                System.out.println("Nome: " + nome + "Preço: " + preco);
+
+            }
+            conndb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar preços: " + erro);
+        }
+    }
 }

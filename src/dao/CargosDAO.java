@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class CargosDAO {
 
@@ -25,6 +26,7 @@ public class CargosDAO {
             return false;
         }
     }
+
     public boolean alterarCargo() {
         PreparedStatement Cargo = null;
         try {
@@ -49,6 +51,28 @@ public class CargosDAO {
         } catch (Exception erro) {
             System.out.println("Erro ao deletar o cargo: " + erro);
             return false;
+        }
+    }
+
+
+    //Query SELECT
+    public void pesquisarCargo() {
+
+
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement buscarCargo = conndb.prepareStatement("SELECT nome " + " FROM Cargos WHERE id = ?");
+            buscarCargo.setInt(1, 1);
+            ResultSet resultado = buscarCargo.executeQuery();
+
+            while (resultado.next()) {
+                String nome = resultado.getString("nome");
+                System.out.println("Nome: " + nome);
+
+            }
+            conndb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar cargo: " + erro);
         }
     }
 }

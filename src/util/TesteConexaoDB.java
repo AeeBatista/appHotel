@@ -78,21 +78,41 @@ public class TesteConexaoDB {
 //                cargosDAO.deletarCargo();
 //                System.out.println("Cargos deletados com sucesso!");
 
+//                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+//                adicionaisDAO.alterarAdicional();
+//                System.out.println("Adicionais alterados com sucesso!");
+//
+//                CargosDAO  cargosDAO = new CargosDAO();
+//                cargosDAO.alterarCargo();
+//                System.out.println("Cargos alterados com sucesso!");
+//
+//                QuartosDAO  quartosDAO = new QuartosDAO();
+//                quartosDAO.alterarQuarto();
+//                System.out.println("Quartos alterados com sucesso!");
+//
+//                ClientesDAO clientesDAO = new ClientesDAO();
+//                clientesDAO.alterarClientes();
+//                System.out.println("Clientes alterados com sucesso!");
+
+                UsuariosDAO usuarioDAO = new UsuariosDAO();
+                usuarioDAO.pesquisarUsuario();
+                System.out.println("Usuarios pesquisados com sucesso!");
+
+                QuartosDAO quartosDAO = new QuartosDAO();
+                quartosDAO.pesquisarQuarto();
+                System.out.println("Quartos pesquisados com sucesso!");
+
                 AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
-                adicionaisDAO.alterarAdicional();
-                System.out.println("Adicionais alterados com sucesso!");
+                adicionaisDAO.pesquisarAdicional();
+                System.out.println("Adicionais pesquisados com sucesso!");
 
-                CargosDAO  cargosDAO = new CargosDAO();
-                cargosDAO.alterarCargo();
-                System.out.println("Cargos alterados com sucesso!");
+                CargosDAO cargosDAO = new CargosDAO();
+                cargosDAO.pesquisarCargo();
+                System.out.println("Cargos pesquisados com sucesso!");
 
-                QuartosDAO  quartosDAO = new QuartosDAO();
-                quartosDAO.alterarQuarto();
-                System.out.println("Quartos alterados com sucesso!");
 
-                ClientesDAO clientesDAO = new ClientesDAO();
-                clientesDAO.alterarClientes();
-                System.out.println("Clientes alterados com sucesso!");
+
+
 
 
                 condb.close();
