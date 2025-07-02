@@ -14,7 +14,7 @@ public class PedidosDAO {
     public boolean inserirPedido() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement novoPedido = conndb.prepareStatement("INSERT INTO Pedidos " + "(fk_usuario_id,fk_cliente_id,pagamento) VALUES (?, ?, ?);");
+            PreparedStatement novoPedido = conndb.prepareStatement("INSERT INTO pedidos " + "(fk_usuario_id,fk_cliente_id,pagamento) VALUES (?, ?, ?);");
 
             //setar parametros
             novoPedido.setInt(1, 1);
@@ -36,7 +36,7 @@ public class PedidosDAO {
 
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement buscarPedido = conndb.prepareStatement("SELECT " + " FROM pedidos WHERE fk_usuario_id + fk_cliente_id = ?");
+            PreparedStatement buscarPedido = conndb.prepareStatement("SELECT pagamento  FROM pedidos WHERE fk_usuario_id + fk_cliente_id = ?");
             buscarPedido.setInt(1, 1);
             ResultSet resultado = buscarPedido.executeQuery();
 

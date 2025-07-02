@@ -33,7 +33,7 @@ public class AdicionaisDAO {
         PreparedStatement Adicional = null;
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement adicionalAlterado = conndb.prepareStatement("UPDATE usuarios SET nome = ?, preco = ? WHERE id = ?");
+            PreparedStatement adicionalAlterado = conndb.prepareStatement("UPDATE adicionais SET nome = ?, preco = ? WHERE id = ?");
             adicionalAlterado.setString(1, "Gabrielzinhu");
             adicionalAlterado.setDouble(2, 100.2);
 
@@ -64,7 +64,7 @@ public class AdicionaisDAO {
 
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement buscarAdicional = conndb.prepareStatement("SELECT nome, preco " + " FROM adicionais WHERE id = ?");
+            PreparedStatement buscarAdicional = conndb.prepareStatement("SELECT nome, preco  FROM adicionais WHERE id = ?");
             buscarAdicional.setInt(1, 1);
             ResultSet resultado = buscarAdicional.executeQuery();
 

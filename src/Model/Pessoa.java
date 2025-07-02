@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public class Pessoa {
     /*Declaração de variáveis com

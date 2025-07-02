@@ -1,5 +1,6 @@
 package dao;
 
+import Model.Usuario;
 import util.Conexao;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class UsuariosDAO {
 
             //setar parametros
             novoUsuario.setString(1, "Gabriel");
-            novoUsuario.setInt(2, 1);
+            novoUsuario.setInt(2, 7);
             novoUsuario.setString(3, "!10G%H");
 
             int LinhaAfetada = novoUsuario.executeUpdate();
@@ -36,7 +37,7 @@ public class UsuariosDAO {
         PreparedStatement Usuario = null;
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement usuarioAlterado = conndb.prepareStatement("UPDATE usuarios" + "SET nome = ?, email = ?, senha = md5(?) + ?, " + "fk_cargo_id = ? WHERE id = ?");
+            PreparedStatement usuarioAlterado = conndb.prepareStatement("UPDATE usuarios SET nome = ?, email = ?, senha = md5(?) + ?, fk_cargo_id = ? WHERE id = ?");
             usuarioAlterado.setString(1, "Gabrielzinho Lindu");
             usuarioAlterado.setString(2, "Gowgowgow@gmail.com");
             usuarioAlterado.setString(3, "123");
@@ -54,7 +55,7 @@ public class UsuariosDAO {
     public boolean deletarUsuario() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement removeUsuario = conndb.prepareStatement("DELETE FROM Usuarios WHERE id = ?");
+            PreparedStatement removeUsuario = conndb.prepareStatement("DELETE FROM usuarios WHERE id = ?");
             removeUsuario.setInt(1,2);
             int linhaAfetada = removeUsuario.executeUpdate();
             return linhaAfetada > 0;
@@ -65,25 +66,25 @@ public class UsuariosDAO {
     }
 
     //Query SELECT
-    public void pesquisarUsuario() {
+    public boolean pesquisarUsuario(Usuario usuario) {
+        try {
+            Connection conndb = conexao.conectar();
+            PreparedStatement stmt = conndb.prepareStatement("SELECT nome FROM usuarios WHERE email = ? AND senha = md5(?);");
+            stmt.setString(1, usuario.getEmail());
+            stmt.setString(2, usuario.getSenha());
 
+            ResultSet resultado = stmt.executeQuery();
 
-    try{
-        Connection conndb = conexao.conectar();
-        PreparedStatement buscarUsuario = conndb.prepareStatement("SELECT nome, email " + " FROM usuarios WHERE fk_cargo_id = ?" );
-        buscarUsuario.setInt(1,1);
-        ResultSet resultado = buscarUsuario.executeQuery();
+            boolean acessoAutorizado = resultado.next();
 
-        while (resultado.next()) {
-            String nome = resultado.getString("nome");
-            String email = resultado.getString("email");
-            System.out.println("Nome: " + nome + "Email: " + email);
+                String nome = resultado.getString("nome");
+                System.out.println("Olá, seja bem-vindo, " + nome);
+            conndb.close();
+            return acessoAutorizado;
 
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar usuario: " + erro);
+            return false;
         }
-        conndb.close();
-    }
-    catch(Exception erro){
-        System.out.println("Erro ao pesquisar usuario: " + erro);
-    }
     }
 }

@@ -1,18 +1,26 @@
-package model;
+package Model;
+
+import Model.Pessoa;
+
 public class Usuario extends Pessoa {
-private int id, role_id;
-private String senha;
+    private int id, role_id;
+    private String senha;
+
+    //private String email;
     public Usuario(String nome, String email, String senha, int role_id) {
         super(nome, email);
         this.senha = senha;
         this.role_id = role_id;
     }
+
     public int getId() {
         return id;
     }
+
     public int getRole_id() {
         return role_id;
     }
+
     public String getSenha() {
         return senha;
     }
@@ -29,3 +37,4 @@ private String senha;
         this.senha = senha;
     }
 }
+

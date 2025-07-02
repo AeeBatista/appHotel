@@ -33,10 +33,10 @@ public class QuartosDAO {
     }
 
     public boolean alterarQuarto() {
-        PreparedStatement Usuario = null;
+        PreparedStatement Quarto = null;
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement quartoAlterado = conndb.prepareStatement("UPDATE usuarios" + "SET nome = ?, numero_quarto = ?, qtd_cama_casal = ?, qtd_cama_solteiro = ?, preco = ?, disponivel = ? WHERE id = ?");
+            PreparedStatement quartoAlterado = conndb.prepareStatement("UPDATE quartos" + "SET nome = ?, numero_quarto = ?, qtd_cama_casal = ?, qtd_cama_solteiro = ?, preco = ?, disponivel = ? WHERE id = ?");
             quartoAlterado.setString(1, "Gamadinho");
             quartoAlterado.setInt(2, 2);
             quartoAlterado.setInt(3, 1);
@@ -71,7 +71,7 @@ public class QuartosDAO {
 
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement buscarQuarto = conndb.prepareStatement("SELECT nome, numero_quarto, qtd_cama_casal, qtd_cama_solteiro, preco, disponivel " + " FROM quartos WHERE id = ?");
+            PreparedStatement buscarQuarto = conndb.prepareStatement("SELECT nome, numero_quarto, qtd_cama_casal, qtd_cama_solteiro, preco, disponivel FROM quartos WHERE id = ?");
             buscarQuarto.setInt(1, 1);
             ResultSet resultado = buscarQuarto.executeQuery();
 

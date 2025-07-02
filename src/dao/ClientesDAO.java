@@ -33,7 +33,7 @@ public class ClientesDAO {
         PreparedStatement Cliente = null;
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement clienteAlterado = conndb.prepareStatement("UPDATE usuarios" + "SET nome = ?, cpf = ?, telefone = ?  WHERE id = ?");
+            PreparedStatement clienteAlterado = conndb.prepareStatement("UPDATE clientes" + "SET nome = ?, cpf = ?, telefone = ?  WHERE id = ?");
             clienteAlterado.setString(1, "Gabrielzinhuu");
             clienteAlterado.setString(2, "###.###.###-#");
             clienteAlterado.setString(3, "## #####-####");
@@ -49,7 +49,7 @@ public class ClientesDAO {
     public boolean deletarCliente() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement removeCliente = conndb.prepareStatement("DELETE FROM Clientes WHERE id = ?");
+            PreparedStatement removeCliente = conndb.prepareStatement("DELETE FROM clientes WHERE id = ?");
             removeCliente.setInt(1, 1);
             int linhaAfetada = removeCliente.executeUpdate();
             return linhaAfetada > 0;

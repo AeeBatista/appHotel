@@ -44,7 +44,7 @@ public class CargosDAO {
     public boolean deletarCargo() {
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement removeCargos = conndb.prepareStatement("DELETE FROM Cargos WHERE id = ?");
+            PreparedStatement removeCargos = conndb.prepareStatement("DELETE FROM cargos WHERE id = ?");
             removeCargos.setInt(1, 4);
             int linhaAfetada = removeCargos.executeUpdate();
             return linhaAfetada > 0;
@@ -61,7 +61,7 @@ public class CargosDAO {
 
         try {
             Connection conndb = conexao.conectar();
-            PreparedStatement buscarCargo = conndb.prepareStatement("SELECT nome " + " FROM Cargos WHERE id = ?");
+            PreparedStatement buscarCargo = conndb.prepareStatement("SELECT nome  FROM cargos WHERE id = ?");
             buscarCargo.setInt(1, 1);
             ResultSet resultado = buscarCargo.executeQuery();
 
